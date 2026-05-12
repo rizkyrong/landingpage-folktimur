@@ -640,6 +640,15 @@ select {
   color: rgba(248, 249, 250, 0.8);
 }
 
+/* Stacked email + WhatsApp buttons */
+.email-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+  min-width: 240px;
+}
+
 .contact-actions {
   display: grid;
   gap: 12px;
@@ -711,6 +720,11 @@ footer p {
 
   .trip-card p {
     min-height: 0;
+  }
+
+  .email-actions {
+    min-width: 0;
+    align-items: stretch;
   }
 
   .contact-actions {
