@@ -57,7 +57,7 @@
             <p class="eyebrow">The Gateway to Summit / Sembalun Lawang</p>
             <h1>Start Your Journey from Sembalun</h1>
             <p class="hero-lede">
-              A premier Rinjani trekking organizer and mountain-ready basecamp for guided climbs, misty sunrise starts and gear checks.
+              A premier Rinjani trekking organizer and mountain-ready basecamp for guided climbs, misty sunrise starts, gear checks, and equipment rentals.
             </p>
             <div class="hero-actions" aria-label="Booking actions">
               <a class="button primary" href="https://wa.me/6282362822666?text=Hi%20Folktimur%2C%20I%20want%20to%20book%20a%20Rinjani%20trek%20from%20Sembalun." target="_blank" rel="noreferrer">
@@ -66,7 +66,7 @@
               </a>
               <a class="button secondary" href="#rentals">
                 <span aria-hidden="true">▣</span>
-                Essential Gear
+                Rent Equipment
               </a>
             </div>
             <dl class="quick-stats">
@@ -90,10 +90,10 @@
               <span>Plan a Trek</span>
               <strong>Today</strong>
             </div>
-            <form>
+            <form onsubmit="return false;">
               <label>
                 Trip type
-                <select>
+                <select id="f-trip">
                   <option>2D1N Sembalun - Summit - Sembalun</option>
                   <option>3D2N Sembalun - Summit - Lake - Torean</option>
                   <option>4D3N Sembalun - Summit + Summit - Lake - Senaru</option>
@@ -109,25 +109,51 @@
               </label>
               <label>
                 Start date
-                <input type="date" />
+                <input type="date" id="f-date" />
               </label>
               <label>
                 Guests
-                <input type="number" min="1" max="20" value="2" />
+                <input type="number" id="f-guests" min="1" max="20" value="2" />
               </label>
               <label>
                 Add-ons
-                <select>
+                <select id="f-addons">
                   <option>Porter + tent + meals</option>
                   <option>Guide only</option>
                   <option>Equipment rental bundle</option>
                   <option>Car rental</option>
                 </select>
               </label>
-              <a class="button primary full" href="https://wa.me/6282362822666?text=Hi%20Folktimur%2C%20please%20help%20me%20check%20trip%20availability%20from%20Sembalun." target="_blank" rel="noreferrer">
+              <button type="button" class="button primary full" onclick="openWhatsApp()">
                 Check Availability
-              </a>
+              </button>
             </form>
+
+            <script>
+              function openWhatsApp() {
+                var trip    = document.getElementById('f-trip').value;
+                var dateVal = document.getElementById('f-date').value;
+                var guests  = document.getElementById('f-guests').value;
+                var addons  = document.getElementById('f-addons').value;
+
+                var dateStr = 'Not specified';
+                if (dateVal) {
+                  var d = new Date(dateVal + 'T00:00:00');
+                  dateStr = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+                }
+
+                var message =
+                  "Hi Folktimur! I'd like to check availability for a Rinjani trek.\n\n" +
+                  "*Trip:* " + trip + "\n" +
+                  "*Start date:* " + dateStr + "\n" +
+                  "*Guests:* " + guests + " person" + (guests > 1 ? "s" : "") + "\n" +
+                  "*Add-ons:* " + addons + "\n\n" +
+                  "Please let me know if this is available. Thank you!";
+
+                var url = "https://wa.me/6282362822666?text=" + encodeURIComponent(message);
+                window.open(url, "_blank");
+              }
+            </script>
           </aside>
         </div>
       </section>
@@ -195,7 +221,7 @@
             <button type="button">Day packs</button>
           </div>
           <a class="button dark" href="https://wa.me/6282362822666?text=Hi%20Folktimur%2C%20I%20want%20to%20reserve%20Rinjani%20trekking%20equipment." target="_blank" rel="noreferrer">
-            Reserve Now
+            Reserve Gear Now
           </a>
         </div>
         <div class="gear-photo" role="img" aria-label="Trekking gear prepared on a wooden table at basecamp"></div>
